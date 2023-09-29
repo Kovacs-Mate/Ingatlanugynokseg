@@ -1,0 +1,71 @@
+<div class="container-fluid d-flex flex-column align-items-center">
+  <h1 class="my-3">Új hirdetés elküldése</h1>
+
+  <form [formGroup]="adat"
+        (ngSubmit)="sendData()">
+    <div class="mb-3">
+      <label for="kategoria"
+             class="form-label">Ingatlan kategóriája</label>
+      <select formControlName="kategoriaid"
+              class="form-select"
+              id="kategoria">
+        <option disabled
+                selected>
+          Kérem válasszon
+        </option>
+        <option *ngFor="let kategoria of kategoriakList"
+                [value]="kategoria.key">
+          {{ kategoria.megnevezes }}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="datum"
+             class="form-label">Hirdetés dátuma</label>
+      <input formControlName="hirdetesDatuma"
+             readonly
+             type="text"
+             class="form-control"
+             id="datum">
+    </div>
+    <div class="mb-3">
+      <label for="leiras"
+             class="form-label">Ingatlan leírása</label>
+      <textarea formControlName="leiras"
+                class="form-control"
+                id="leiras"
+                rows="3"></textarea>
+    </div>
+    <div class="mb-3 form-check">
+      <input formControlName="tehermentes"
+             class="form-check-input"
+             type="checkbox"
+             id="tehermentes">
+      <label class="form-check-label"
+             for="tehermentes">Tehermentes ingatlan</label>
+    </div>
+    <div class="mb-3">
+      <label for="fenykep"
+             class="form-label">Fénykép az ingatlanról</label>
+      <input formControlName="kepUrl"
+             type="text"
+             class="form-control"
+             id="fenykep">
+    </div>
+    <div class="mb-3 text-center">
+      <button type="submit"
+              class="btn btn-primary btn-lg">
+        Küldés
+      </button>
+    </div>
+  </form>
+
+  <div [hidden]="!error"
+       class="alert alert-danger"
+       role="alert">
+    <h1>
+      Hiba!
+    </h1>
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>

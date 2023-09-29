@@ -1,0 +1,6 @@
+.custom-bg {
+    background-image: url(../../../assets/real.PNG);
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+}

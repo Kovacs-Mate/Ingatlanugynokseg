@@ -1,0 +1,39 @@
+<div class="container-fluid d-flex flex-column align-items-center">
+  <h1 class="my-3">Ajánlataink</h1>
+  <table [hidden]="error"
+         class="table">
+    <thead>
+      <tr>
+        <th scope="col">Kategoria</th>
+        <th scope="col">Leírás</th>
+        <th scope="col">Hírdetés dátuma</th>
+        <th scope="col">Tehermentes</th>
+        <th scope="col">Fénykép</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of ingatlanokList">
+        <td>{{ kategoria(item.kategoriaid) }}</td>
+        <td>{{ item.leiras }}</td>
+        <td>{{ item.hirdetesDatuma }}</td>
+        <td [ngClass]="{'green': item.tehermentes === true, 'red': item.tehermentes === false}">
+          {{ tehermentes(item.tehermentes) }}
+        </td>
+        <td>
+          <img class="img-fluid img-thumbnail"
+               style="width: 150px;"
+               [src]="item.kepUrl"
+               alt="ingatlan">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div [hidden]="!error"
+       class="alert alert-danger"
+       role="alert">
+    <h1>
+      Hiba az adatbázis betöltése során!
+    </h1>
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>
